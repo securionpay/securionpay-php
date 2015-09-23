@@ -57,6 +57,16 @@ class SubscriptionUpdateRequest extends AbstractRequest
         return $this->set('quantity', $quantity);
     }
 
+    public function getCaptureCharges()
+    {
+        return $this->get('captureCharges');
+    }
+    
+    public function captureCharges($captureCharges)
+    {
+        return $this->set('captureCharges', $captureCharges);
+    }
+
     public function getTrialEnd()
     {
         return $this->get('trialEnd');

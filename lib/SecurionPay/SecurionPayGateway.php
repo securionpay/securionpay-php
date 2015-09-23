@@ -7,11 +7,11 @@ use SecurionPay\Exception\SecurionPayException;
 use SecurionPay\Util\ObjectSerializer;
 
 /**
- * @version 2.0.0
+ * @version 2.1.0
  */
 class SecurionPayGateway
 {
-    const VERSION = '2.0.0';
+    const VERSION = '2.1.0';
     const DEFAULT_ENDPOINT = 'https://api.securionpay.com/';
 
     private $objectSerializer;
@@ -306,6 +306,125 @@ class SecurionPayGateway
      */
     public function listBlacklistRules($request = null) {
         return $this->getList('/blacklist', $request, '\SecurionPay\Response\BlacklistRule');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CrossSaleOfferRequest $request
+     * @return \SecurionPay\Response\CrossSaleOffer
+     */
+    public function createCrossSaleOffer($request) {
+        return $this->post('/cross-sale-offers', $request, '\SecurionPay\Response\CrossSaleOffer');
+    }
+
+    /**
+     * @param string $blacklistRuleId
+     * @return \SecurionPay\Response\CrossSaleOffer
+     */
+    public function retrieveCrossSaleOffer($crossSaleOfferId) {
+        return $this->get("/cross-sale-offers/{$crossSaleOfferId}", '\SecurionPay\Response\CrossSaleOffer');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CrossSaleOfferUpdateRequest $request
+     * @return \SecurionPay\Response\CrossSaleOffer
+     */
+    public function updateCrossSaleOffer($request) {
+        return $this->post('/cross-sale-offers/{crossSaleOfferId}', $request, '\SecurionPay\Response\CrossSaleOffer');
+    }
+
+    /**
+     * @param string $crossSaleOfferId
+     * @return \SecurionPay\Response\DeleteResponse
+     */
+    public function deleteCrossSaleOffer($crossSaleOfferId) {
+        return $this->delete("/cross-sale-offers/{$crossSaleOfferId}", null, '\SecurionPay\Response\DeleteResponse');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CrossSaleOfferListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listCrossSaleOffers($request) {
+        return $this->getList('/cross-sale-offers', $request, '\SecurionPay\Response\CrossSaleOffer');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CustomerRecordRequest $request
+     * @return \SecurionPay\Response\CustomerRecord
+     */
+    public function createCustomerRecord($request) {
+        return $this->post('/customer-records', $request, '\SecurionPay\Response\CustomerRecord');
+    }
+    
+    /**
+     * @param \SecurionPay\Request\CustomerRecordRefreshRequest $request
+     * @return \SecurionPay\Response\CustomerRecord
+     */
+    public function refreshCustomerRecord($request) {
+        return $this->post('/customer-records/{customerRecordId}', $request, '\SecurionPay\Response\CustomerRecord');
+    }
+    
+    /**
+     * @param string $customerRecordId
+     * @return \SecurionPay\Response\CustomerRecord
+     */
+    public function retrieveCustomerRecord($customerRecordId) {
+        return $this->get("/customer-records/{$customerRecordId}", '\SecurionPay\Response\CustomerRecord');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CustomerRecordListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listCustomerRecords($request) {
+        return $this->getList('/customer-records', $request, '\SecurionPay\Response\CustomerRecord');
+    }
+    
+    /**
+     * @param string $customerRecordId
+     * @param string $customerRecordFeeId
+     * @return \SecurionPay\Response\CustomerRecordFee
+     */
+    public function retrieveCustomerRecordFee($customerRecordId, $customerRecordFeeId) {
+        return $this->get("/customer-records/{$customerRecordId}/fees/{$customerRecordFeeId}", '\SecurionPay\Response\CustomerRecordFee');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CustomerRecordFeeListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listCustomerRecordFees($request) {
+        return $this->getList('/customer-records/{customerRecordId}/fees', $request, '\SecurionPay\Response\CustomerRecordFee');
+    }
+
+    /**
+     * @param string $customerRecordId
+     * @param string $customerRecordProfitId
+     * @return \SecurionPay\Response\CustomerRecordFee
+     */
+    public function retrieveCustomerRecordProfit($customerRecordId, $customerRecordProfitId) {
+        return $this->get("/customer-records/{$customerRecordId}/profits/{$customerRecordProfitId}", '\SecurionPay\Response\CustomerRecordProfit');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CustomerRecordProfitListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listCustomerRecordProfits($request) {
+        return $this->getList('/customer-records/{customerRecordId}/profits', $request, '\SecurionPay\Response\CustomerRecordProfit');
+    }
+
+    /**
+     * @param \SecurionPay\Request\CheckoutRequest $request
+     * @return string
+     */
+    public function signCheckoutRequest($request) {
+        $path = '';
+        $data = $this->objectSerializer->serialize($request, $path);
+        
+        $signarute = hash_hmac('sha256', $data, $this->privateKey);
+        
+        return base64_encode($signarute . "|" . $data);
     }
 
     private function get($path, $responseClass) {

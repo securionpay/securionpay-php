@@ -39,6 +39,11 @@ class Subscription extends AbstractResponse
         return $this->get('quantity');
     }
 
+    public function getCaptureCharges()
+    {
+        return $this->get('captureCharges');
+    }
+
     public function getStatus()
     {
         return $this->get('status');

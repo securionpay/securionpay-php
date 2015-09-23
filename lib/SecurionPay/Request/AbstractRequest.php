@@ -49,6 +49,11 @@ abstract class AbstractRequest {
 	        $value = $value->toArray();
 	    }
 	    
+	    if ($value === null) {
+	        unset($this->data[$field]);
+	        return $this;
+	    }
+	    
 		$this->data[$field] = $value;
         return $this;
 	}

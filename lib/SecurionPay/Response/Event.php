@@ -39,6 +39,14 @@ class Event extends AbstractResponse
                 return new Plan($data);
             case 'subscription':
                 return new Subscription($data);
+            case 'crossSaleOffer':
+                return new CrossSaleOffer($data);
+            case 'customerRecord':
+                return new CustomerRecord($data);
+            case 'customerRecordProfit':
+                return new CustomerRecordProfit($data);
+            case 'customerRecordFee':
+                return new CustomerRecordFee($data);
             default:
                 return $data;
         }

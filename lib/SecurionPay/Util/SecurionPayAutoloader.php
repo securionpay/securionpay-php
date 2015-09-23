@@ -6,7 +6,7 @@ namespace SecurionPay\Util;
  *
  * Usage example:
  * <code>
- * require_once 'SecurionPay/Utils/SecurionPayAutoloader.php';
+ * require_once 'SecurionPay/Util/SecurionPayAutoloader.php';
  * \SecurionPay\Util\SecurionPayAutoloader::register();
  * </code>
  */

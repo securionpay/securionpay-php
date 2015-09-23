@@ -16,15 +16,31 @@ class ObjectSerializer
     {
         $request = $this->normalizeRequest($request);
         $request = $this->handlePathVariables($request, $path);
+        $request = $this->transformForJson($request);
 
-        $json = json_encode($request, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
+        $json = json_encode($request);
         if ($json === false) {
             throw new MappingException($this->getJsonError('JSON encode failed'));
         }
-        
+
         return $json;
     }
 
+    private function transformForJson($array)
+    {
+        if ($array === array()) {
+            return (object) null;
+        }
+    
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $array[$key] = $this->transformForJson($value);
+            }
+        }
+    
+        return $array;
+    }
+    
     public function deserialize($responseBody, $responseClass)
     {
         $response = json_decode($responseBody, true);
@@ -78,7 +94,7 @@ class ObjectSerializer
             throw new MappingException('Request parameter must be request object or an array, but was: ' . gettype($request));
         }
     }
-
+    
     public function handlePathVariables($request, & $path)
     {
         foreach ($this->findPathVars($path) as $var) {

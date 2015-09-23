@@ -83,6 +83,22 @@ class Charge extends AbstractResponse
         return $this->get('metadata');
     }
 
+    /**
+     * @return \SecurionPay\Response\ChargeFromCrossSale
+     */
+    public function getFromCrossSale()
+    {
+        return $this->getObject('fromCrossSale', '\SecurionPay\Response\ChargeFromCrossSale');
+    }
+
+    /**
+     * @return \SecurionPay\Response\ChargeWithCrossSale[]
+     */
+    public function getWithCrossSales()
+    {
+        return $this->getObjectsList('withCrossSales', '\SecurionPay\Response\ChargeWithCrossSale');
+    }
+
     public function getFailureCode()
     {
         return $this->get('failureCode');
