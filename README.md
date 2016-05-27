@@ -41,7 +41,7 @@ Then to use the library, you can either configure your autoloader to load classe
 use SecurionPay\SecurionPayGateway;
 use SecurionPay\Exception\SecurionPayException;
 
-$gateway = new SecurionPayGateway('pr_test_[YOUR_PRIVATE_KEY]');
+$gateway = new SecurionPayGateway('sk_test_[YOUR_SECRET_KEY]');
 
 $request = array(
     'amount' => 499,
