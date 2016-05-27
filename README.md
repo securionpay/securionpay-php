@@ -1,6 +1,6 @@
 # SecurionPay PHP Library
 
-If you don't already have SecurionPay account you can create it [here](https://securionpay.com/register). 
+If you don't already have SecurionPay account you can create it [here](https://securionpay.com/signup). 
 
 ## Installation 
 
@@ -69,4 +69,4 @@ try {
 
 ## Documentation
 
-For further information, please refer to our official API documentation at https://securionpay.com/docs/api.
+For further information, please refer to our official documentation at https://securionpay.com/docs.
