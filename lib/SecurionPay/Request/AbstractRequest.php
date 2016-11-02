@@ -41,7 +41,10 @@ abstract class AbstractRequest {
             return null;
         }
         
-        return new $className($this->get($field));
+        $object = new $className();
+        $object->data = & $this->data[$field];
+        
+        return $object;
     }
 
 	public function set($field, $value) {

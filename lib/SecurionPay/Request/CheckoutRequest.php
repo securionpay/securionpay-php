@@ -30,6 +30,19 @@ class CheckoutRequest extends AbstractRequest
         return $this->set('subscription', $subscription);
     }
 
+    /**
+     * @return \SecurionPay\Request\CheckoutRequestCustomCharge
+     */
+    public function getCustomCharge()
+    {
+        return $this->getObject('customCharge', '\SecurionPay\Request\CheckoutRequestCustomCharge');
+    }
+
+    public function customCharge($customCharge)
+    {
+        return $this->set('customCharge', $customCharge);
+    }
+
     public function getCustomerId()
     {
         return $this->get('customerId');
@@ -58,5 +71,25 @@ class CheckoutRequest extends AbstractRequest
     public function rememberMe($rememberMe)
     {
         return $this->set('rememberMe', $rememberMe);
+    }
+
+    public function getThreeDSecureRequired()
+    {
+        return $this->get('threeDSecureRequired');
+    }
+
+    public function threeDSecureRequired($threeDSecureRequired)
+    {
+        return $this->set('threeDSecureRequired', $threeDSecureRequired);
+    }
+
+    public function getTermsAndConditionsUrl()
+    {
+        return $this->get('termsAndConditionsUrl');
+    }
+    
+    public function termsAndConditionsUrl($termsAndConditionsUrl)
+    {
+        return $this->set('termsAndConditionsUrl', $termsAndConditionsUrl);
     }
 }

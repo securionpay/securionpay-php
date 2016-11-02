@@ -44,6 +44,16 @@ class Token extends AbstractResponse
         return $this->get('expYear');
     }
 
+    public function getBrand()
+    {
+        return $this->get('brand');
+    }
+
+    public function getType()
+    {
+        return $this->get('type');
+    }
+
     public function getCardholderName()
     {
         return $this->get('cardholderName');
@@ -89,8 +99,19 @@ class Token extends AbstractResponse
         return $this->get('addressCountry');
     }
 
+    /**
+     * @return \SecurionPay\Response\FraudCheckData
+     */
     public function getFraudCheckData()
     {
         return $this->getObject('fraudCheckData', '\SecurionPay\Response\FraudCheckData');
+    }
+
+    /**
+     * @return \SecurionPay\Response\ThreeDSecureInfo
+     */
+    public function getThreeDSecureInfo()
+    {
+        return $this->getObject('threeDSecureInfo', '\SecurionPay\Response\ThreeDSecureInfo');
     }
 }

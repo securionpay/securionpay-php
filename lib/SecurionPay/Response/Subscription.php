@@ -94,6 +94,30 @@ class Subscription extends AbstractResponse
         return $this->get('cancelAtPeriodEnd');
     }
 
+    /**
+     * @return \SecurionPay\Response\Shipping
+     */
+    public function getShipping()
+    {
+        return $this->getObject('shipping', '\SecurionPay\Response\Shipping');
+    }
+
+    /**
+     * @return \SecurionPay\Response\Billing
+     */
+    public function getBilling()
+    {
+        return $this->getObject('billing', '\SecurionPay\Response\Billing');
+    }
+
+    /**
+     * @return \SecurionPay\Response\ThreeDSecureInfo
+     */
+    public function getThreeDSecureInfo()
+    {
+        return $this->getObject('threeDSecureInfo', '\SecurionPay\Response\ThreeDSecureInfo');
+    }
+
     public function getMetadata()
     {
         return $this->get('metadata');

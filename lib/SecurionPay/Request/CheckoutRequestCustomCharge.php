@@ -1,17 +1,30 @@
 <?php
 namespace SecurionPay\Request;
 
-class CheckoutRequestCharge extends AbstractRequest
+class CheckoutRequestCustomCharge extends AbstractRequest
 {
 
-    public function getAmount()
+    public function getAmountOptions()
     {
-        return $this->get('amount');
+        return $this->get('amountOptions');
     }
 
-    public function amount($amount)
+    public function amountOptions($amountOptions)
     {
-        return $this->set('amount', $amount);
+        return $this->set('amountOptions', $amountOptions);
+    }
+
+    /**
+     * @return \SecurionPay\Request\CheckoutRequestCustomAmount
+     */
+    public function getCustomAmount()
+    {
+        return $this->getObject('customAmount', '\SecurionPay\Request\CheckoutRequestCustomAmount');
+    }
+
+    public function customAmount($customAmount)
+    {
+        return $this->set('customAmount', $customAmount);
     }
 
     public function getCurrency()

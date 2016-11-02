@@ -7,12 +7,12 @@ use SecurionPay\Exception\SecurionPayException;
 use SecurionPay\Util\ObjectSerializer;
 
 /**
- * @version 2.1.0
+ * @version 2.1.1-rc3
  */
 class SecurionPayGateway
 {
-    const VERSION = '2.1.0';
-    const DEFAULT_ENDPOINT = 'https://api.securionpay.com/';
+    const VERSION = '2.2.0';
+    const DEFAULT_ENDPOINT = 'https://api.securionpay.com';
 
     private $objectSerializer;
     
@@ -24,6 +24,8 @@ class SecurionPayGateway
     private $privateKey;
 
     private $endpoint = self::DEFAULT_ENDPOINT;
+    
+    private $userAgent;
 
     public function __construct($privateKey = null, Connection $connection = null)
     {
@@ -475,7 +477,7 @@ class SecurionPayGateway
         return array(
             'Authorization' => 'Basic ' . base64_encode($this->privateKey . ':'),
         	'Content-Type' => 'application/json',
-            'User-Agent' => 'SecurionPay-PHP/' . self::VERSION . ' (PHP/' . phpversion() . ')'
+            'User-Agent' => ($this->userAgent ? $this->userAgent . ' ' : '') . 'SecurionPay-PHP/' . self::VERSION . ' (PHP/' . phpversion() . ')'
         );
     }
 
@@ -492,5 +494,10 @@ class SecurionPayGateway
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+    }
+    
+    public function setUserAgent($userAgent)
+    {
+    	$this->userAgent = $userAgent;
     }
 }

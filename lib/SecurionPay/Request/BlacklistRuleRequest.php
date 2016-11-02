@@ -24,6 +24,16 @@ class BlacklistRuleRequest extends AbstractRequest
         return $this->set('fingerprint', $fingerprint);
     }
 
+    public function getCardNumber()
+    {
+        return $this->get('cardNumber');
+    }
+
+    public function cardNumber($cardNumber)
+    {
+        return $this->set('cardNumber', $cardNumber);
+    }
+
     public function getIpAddress()
     {
         return $this->get('ipAddress');

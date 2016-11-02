@@ -23,4 +23,14 @@ class CheckoutRequestSubscription extends AbstractRequest
     {
         return $this->set('captureCharges', $captureCharges);
     }
+
+    public function getMetadata()
+    {
+        return $this->get('metadata');
+    }
+    
+    public function metadata($metadata)
+    {
+        return $this->set('metadata', $metadata);
+    }
 }

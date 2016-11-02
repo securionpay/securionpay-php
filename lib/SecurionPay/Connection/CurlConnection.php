@@ -11,7 +11,7 @@ class CurlConnection extends Connection
     public function __construct($extraOptions = array())
     {
         if (!extension_loaded('curl')) {
-            throw new Exception('Please install the PHP cURL extension');
+            throw new \Exception('Please install the PHP cURL extension');
         }
         
         $this->extraOptions = $extraOptions;
@@ -41,7 +41,9 @@ class CurlConnection extends Connection
             CURLOPT_CUSTOMREQUEST => $httpMethod,
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => $this->buildHeaders($headers),
-            CURLOPT_RETURNTRANSFER => true
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT => 62
         );
         
         if ($requestBody) {

@@ -35,6 +35,8 @@ class Event extends AbstractResponse
                 return new Card($data);
             case 'charge':
                 return new Charge($data);
+            case 'dispute':
+                return new Dispute($data);
             case 'plan':
                 return new Plan($data);
             case 'subscription':

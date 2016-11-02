@@ -28,15 +28,13 @@ class WordPressConnection extends Connection
     private function httpRequest($httpMethod, $url, $headers = array(), $requestBody = null)
     {
         $headers['User-Agent'] .= ' WordPress/' . get_bloginfo('version');
-        if (isset($GLOBALS['woocommerce'])) {
-            $headers['User-Agent'] .= ' (WooCommerce/' . $GLOBALS['woocommerce']->version . ')';
-        }
-        
+
         $response = wp_remote_request($url, 
             array(
                 'method' => $httpMethod,
                 'headers' => $headers,
-                'body' => $requestBody
+                'body' => $requestBody,
+                'timeout' => 62
             ));
         
         if (is_wp_error($response)) {

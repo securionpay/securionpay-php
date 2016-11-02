@@ -13,7 +13,7 @@ To do this you will need to add this configuration to your `composer.json`:
 ```json
 {
   "require": {
-    "securionpay/securionpay-php": "^2.1.0"
+    "securionpay/securionpay-php": "^2.2.0"
   }
 }
 ```

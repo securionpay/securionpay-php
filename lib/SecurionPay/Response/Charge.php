@@ -78,9 +78,28 @@ class Charge extends AbstractResponse
         return $this->getObject('fraudDetails', '\SecurionPay\Response\FraudDetails');
     }
 
-    public function getMetadata()
+    /**
+     * @return \SecurionPay\Response\Shipping
+     */
+    public function getShipping()
     {
-        return $this->get('metadata');
+        return $this->getObject('shipping', '\SecurionPay\Response\Shipping');
+    }
+    
+    /**
+     * @return \SecurionPay\Response\Billing
+     */
+    public function getBilling()
+    {
+        return $this->getObject('billing', '\SecurionPay\Response\Billing');
+    }
+
+    /**
+     * @return \SecurionPay\Response\ThreeDSecureInfo
+     */
+    public function getThreeDSecureInfo()
+    {
+        return $this->getObject('threeDSecureInfo', '\SecurionPay\Response\ThreeDSecureInfo');
     }
 
     /**
@@ -97,6 +116,19 @@ class Charge extends AbstractResponse
     public function getWithCrossSales()
     {
         return $this->getObjectsList('withCrossSales', '\SecurionPay\Response\ChargeWithCrossSale');
+    }
+
+    /**
+     * @return \SecurionPay\Response\Dispute
+     */
+    public function getDispute()
+    {
+        return $this->getObject('dispute', '\SecurionPay\Response\Dispute');
+    }
+
+    public function getMetadata()
+    {
+        return $this->get('metadata');
     }
 
     public function getFailureCode()

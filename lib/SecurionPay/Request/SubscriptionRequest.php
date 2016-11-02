@@ -67,6 +67,32 @@ class SubscriptionRequest extends AbstractRequest
         return $this->set('trialEnd', $trialEnd);
     }
 
+    /**
+     * @return \SecurionPay\Request\ShippingRequest
+     */
+    public function getShipping()
+    {
+        return $this->getObject('shipping', '\SecurionPay\Request\ShippingRequest');
+    }
+
+    public function shipping($shipping)
+    {
+        return $this->set('shipping', $shipping);
+    }
+
+    /**
+     * @return \SecurionPay\Request\BillingRequest
+     */
+    public function getBilling()
+    {
+        return $this->getObject('billing', '\SecurionPay\Request\BillingRequest');
+    }
+
+    public function billing($billing)
+    {
+        return $this->set('billing', $billing);
+    }
+
     public function getMetadata()
     {
         return $this->get('metadata');
