@@ -104,9 +104,9 @@ class ChargeRequest extends AbstractRequest
         return $this->get('threeDSecureRequired');
     }
 
-    public function threeDSecureRequired($threeDSecureRequired)
+    public function threeDSecure($threeDSecure)
     {
-        return $this->set('threeDSecureRequired', $threeDSecureRequired);
+        return $this->set('threeDSecure', $threeDSecure);
     }
 
     public function getMetadata()
