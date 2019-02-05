@@ -1,20 +1,17 @@
 {
-  "name": "securionpay/securionpay-php",
-  "description": "SecurionPay PHP Library",
-  "homepage": "https://securionpay.com/",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "SecurionPay",
-      "homepage": "https://securionpay.com/"
+    "name": "retloko/securionpay-php",
+    "description": "SecurionPay PHP Library",
+    "authors": [
+        {
+            "name": "Alex Privalov"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SecurionPay\\": "lib/SecurionPay/"
+        }
     }
-  ],
-  "require": {
-    "php": ">=5.4.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "SecurionPay\\": "lib/SecurionPay/"
-    }
-  }
 }
