@@ -100,11 +100,12 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerId
      * @param \SecurionPay\Request\CustomerUpdateRequest $request
      * @return \SecurionPay\Response\Customer
      */
     public function updateCustomer($request) {
-        return $this->post('/customers/{customerId}', $request, '\SecurionPay\Response\Customer');
+        return $this->post("/customers/{$customerId}", $request, '\SecurionPay\Response\Customer');
     }
     
     /**
@@ -124,11 +125,12 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerId
      * @param \SecurionPay\Request\CardRequest $request
      * @return \SecurionPay\Response\Card
      */
-    public function createCard($request) {
-        return $this->post('/customers/{customerId}/cards', $request, '\SecurionPay\Response\Card');
+    public function createCard($customerId, $request) {
+        return $this->post("/customers/{$customerId}/cards", $request, '\SecurionPay\Response\Card');
     }
 
     /**
@@ -141,11 +143,13 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerId
+     * @param string $cardId
      * @param \SecurionPay\Request\CardUpdateRequest $request
      * @return \SecurionPay\Response\Card
      */
-    public function updateCard($request) {
-        return $this->post('/customers/{customerId}/cards/{cardId}', $request, '\SecurionPay\Response\Card');
+    public function updateCard($customerId, $cardId, $request) {
+        return $this->post("/customers/{$customerId}/cards/{$cardId}", $request, '\SecurionPay\Response\Card');
     }
 
     /**
@@ -158,19 +162,21 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerId
      * @param \SecurionPay\Request\CardListRequest $request
      * @return \SecurionPay\Response\ListResponse
      */
-    public function listCards($request) {
-        return $this->getList('/customers/{customerId}/cards', $request, '\SecurionPay\Response\Card');
+    public function listCards($customerId, $request) {
+        return $this->getList("/customers/{$customerId}/cards", $request, '\SecurionPay\Response\Card');
     }
 
     /**
+     * @param string $customerId
      * @param \SecurionPay\Request\SubscriptionRequest $request
      * @return \SecurionPay\Response\Subscription
      */
-    public function createSubscription($request) {
-        return $this->post('/customers/{customerId}/subscriptions', $request, '\SecurionPay\Response\Subscription');
+    public function createSubscription($customerId, $request) {
+        return $this->post('/customers/{$customerId}/subscriptions', $request, '\SecurionPay\Response\Subscription');
     }
 
     /**
@@ -183,27 +189,32 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerId
+     * @param string $subscriptionId
      * @param \SecurionPay\Request\SubscriptionUpdateRequest $request
      * @return \SecurionPay\Response\Subscription
      */
-    public function updateSubscription($request) {
-        return $this->post('/customers/{customerId}/subscriptions/{subscriptionId}', $request, '\SecurionPay\Response\Subscription');
+    public function updateSubscription($customerId, $subscriptionId, $request) {
+        return $this->post("/customers/{$customerId}/subscriptions/{$subscriptionId}", $request, '\SecurionPay\Response\Subscription');
     }
 
     /**
+     * @param string $customerId
+     * @param string $subscriptionId
      * @param \SecurionPay\Request\SubscriptionCancelRequest $request
      * @return \SecurionPay\Response\Subscription
      */
-    public function cancelSubscription($request) {
-        return $this->delete('/customers/{customerId}/subscriptions/{subscriptionId}', $request, '\SecurionPay\Response\Subscription');
+    public function cancelSubscription($customerId, $subscriptionId, $request) {
+        return $this->delete("/customers/{$customerId}/subscriptions/{$subscriptionId}", $request, '\SecurionPay\Response\Subscription');
     }
 
     /**
+     * @param string $customerId
      * @param \SecurionPay\Request\SubscriptionListRequest $request
      * @return \SecurionPay\Response\ListResponse
      */
-    public function listSubscriptions($request) {
-        return $this->getList('/customers/{customerId}/subscriptions', $request, '\SecurionPay\Response\Subscription');
+    public function listSubscriptions($customerId, $request) {
+        return $this->getList("/customers/{$customerId}/subscriptions", $request, '\SecurionPay\Response\Subscription');
     }
 
     /**
@@ -223,11 +234,12 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $planId
      * @param \SecurionPay\Request\PlanUpdateRequest $request
      * @return \SecurionPay\Response\Plan
      */
-    public function updatePlan($request) {
-        return $this->post('/plans/{planId}', $request, '\SecurionPay\Response\Plan');
+    public function updatePlan($planId, $request) {
+        return $this->post("/plans/{$planId}", $request, '\SecurionPay\Response\Plan');
     }
 
     /**
@@ -327,11 +339,12 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $crossSaleOfferId
      * @param \SecurionPay\Request\CrossSaleOfferUpdateRequest $request
      * @return \SecurionPay\Response\CrossSaleOffer
      */
-    public function updateCrossSaleOffer($request) {
-        return $this->post('/cross-sale-offers/{crossSaleOfferId}', $request, '\SecurionPay\Response\CrossSaleOffer');
+    public function updateCrossSaleOffer($crossSaleOfferId, $request) {
+        return $this->post("/cross-sale-offers/{$crossSaleOfferId}", $request, '\SecurionPay\Response\CrossSaleOffer');
     }
 
     /**
@@ -359,11 +372,12 @@ class SecurionPayGateway
     }
     
     /**
+     * @param string $customerRecordId
      * @param \SecurionPay\Request\CustomerRecordRefreshRequest $request
      * @return \SecurionPay\Response\CustomerRecord
      */
-    public function refreshCustomerRecord($request) {
-        return $this->post('/customer-records/{customerRecordId}', $request, '\SecurionPay\Response\CustomerRecord');
+    public function refreshCustomerRecord($customerRecordId, $request) {
+        return $this->post("/customer-records/{$customerRecordId}", $request, '\SecurionPay\Response\CustomerRecord');
     }
     
     /**
@@ -392,11 +406,12 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerRecordId
      * @param \SecurionPay\Request\CustomerRecordFeeListRequest $request
      * @return \SecurionPay\Response\ListResponse
      */
-    public function listCustomerRecordFees($request) {
-        return $this->getList('/customer-records/{customerRecordId}/fees', $request, '\SecurionPay\Response\CustomerRecordFee');
+    public function listCustomerRecordFees($customerRecordId, $request) {
+        return $this->getList("/customer-records/{$customerRecordId}/fees", $request, '\SecurionPay\Response\CustomerRecordFee');
     }
 
     /**
@@ -409,11 +424,12 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $customerRecordId
      * @param \SecurionPay\Request\CustomerRecordProfitListRequest $request
      * @return \SecurionPay\Response\ListResponse
      */
-    public function listCustomerRecordProfits($request) {
-        return $this->getList('/customer-records/{customerRecordId}/profits', $request, '\SecurionPay\Response\CustomerRecordProfit');
+    public function listCustomerRecordProfits($customerRecordId, $request) {
+        return $this->getList("/customer-records/{$customerRecordId}/profits", $request, '\SecurionPay\Response\CustomerRecordProfit');
     }
 
     /**
