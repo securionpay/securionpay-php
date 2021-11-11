@@ -104,7 +104,7 @@ class SecurionPayGateway
      * @param \SecurionPay\Request\CustomerUpdateRequest $request
      * @return \SecurionPay\Response\Customer
      */
-    public function updateCustomer($request) {
+    public function updateCustomer($customerId, $request) {
         return $this->post("/customers/{$customerId}", $request, '\SecurionPay\Response\Customer');
     }
     
