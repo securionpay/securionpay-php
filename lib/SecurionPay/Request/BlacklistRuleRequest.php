@@ -103,4 +103,34 @@ class BlacklistRuleRequest extends AbstractRequest
     {
         return $this->set('acceptLanguage', $acceptLanguage);
     }
+    
+    public function getCardCountry()
+    {
+        return $this->get('cardCountry');
+    }
+    
+    public function cardCountry($cardCountry)
+    {
+        return $this->set('cardCountry', $cardCountry);
+    }
+    
+    public function getCardBin()
+    {
+        return $this->get('cardBin');
+    }
+    
+    public function cardBin($cardBin)
+    {
+        return $this->set('cardBin', $cardBin);
+    }
+    
+    public function getCardIssuer()
+    {
+        return $this->get('cardIssuer');
+    }
+    
+    public function cardIssuer($cardIssuer)
+    {
+        return $this->set('cardIssuer', $cardIssuer);
+    }
 }

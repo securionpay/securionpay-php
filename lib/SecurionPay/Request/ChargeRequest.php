@@ -99,14 +99,17 @@ class ChargeRequest extends AbstractRequest
         return $this->set('billing', $billing);
     }
 
-    public function getThreeDSecureRequired()
+    /**
+     * @return \SecurionPay\Request\ThreeDSecureRequest
+     */
+    public function getThreeDSecure()
     {
-        return $this->get('threeDSecureRequired');
+        return $this->getObject('threeDSecure', '\SecurionPay\Request\ThreeDSecureRequest');
     }
 
-    public function threeDSecureRequired($threeDSecureRequired)
+    public function threeDSecure($threeDSecure)
     {
-        return $this->set('threeDSecureRequired', $threeDSecureRequired);
+        return $this->set('threeDSecure', $threeDSecure);
     }
 
     public function getMetadata()

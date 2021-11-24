@@ -1,18 +1,8 @@
 <?php
 namespace SecurionPay\Request;
 
-class CustomerRecordProfitListRequest extends AbstractRequest
+class FileUploadListRequest extends AbstractRequest
 {
-
-    public function getCustomerRecordId()
-    {
-        return $this->get('customerRecordId');
-    }
-
-    public function customerRecordId($customerRecordId)
-    {
-        return $this->set('customerRecordId', $customerRecordId);
-    }
 
     public function getLimit()
     {

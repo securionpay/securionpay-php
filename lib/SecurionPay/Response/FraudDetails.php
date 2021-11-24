@@ -1,13 +1,16 @@
 <?php
 namespace SecurionPay\Response;
 
-class FraudDetails extends AbstractResponse {
+class FraudDetails extends AbstractResponse
+{
 	
-	public function __construct($response) {
+	public function __construct($response)
+	{
 		parent::__construct($response);
 	}
 
-	public function getStatus() {
+	public function getStatus()
+	{
 	    return $this->get('status');
 	}
 

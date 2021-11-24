@@ -1,9 +1,9 @@
 <?php
 namespace SecurionPay\Request;
 
-class CustomerRecordListRequest extends AbstractRequest
+class CreditListRequest extends AbstractRequest
 {
-
+    
     public function getLimit()
     {
         return $this->get('limit');
@@ -55,5 +55,15 @@ class CustomerRecordListRequest extends AbstractRequest
     public function created($created)
     {
         return $this->set('created', $created);
+    }
+    
+    public function getCustomerId()
+    {
+        return $this->get('customerId');
+    }
+    
+    public function customerId($customerId)
+    {
+        return $this->set('customerId', $customerId);
     }
 }

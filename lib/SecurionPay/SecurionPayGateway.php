@@ -13,17 +13,20 @@ class SecurionPayGateway
 {
     const VERSION = '2.2.0';
     const DEFAULT_ENDPOINT = 'https://api.securionpay.com';
-
+    const DEFAULT_UPLOADS_ENDPOINT = "https://uploads.securionpay.com/";
+    
     private $objectSerializer;
     
     /**
-     * @var \SecurionPay\API\AbstractConnection
+     * @var \SecurionPay\Connection\Connection
      */
     private $connection;
 
     private $privateKey;
 
     private $endpoint = self::DEFAULT_ENDPOINT;
+
+    private $uploadsEndpoint = self::DEFAULT_UPLOADS_ENDPOINT;
     
     private $userAgent;
 
@@ -351,71 +354,113 @@ class SecurionPayGateway
     }
 
     /**
-     * @param \SecurionPay\Request\CustomerRecordRequest $request
-     * @return \SecurionPay\Response\CustomerRecord
+     * @param \SecurionPay\Request\CreditRequest $request
+     * @return \SecurionPay\Response\Credit
      */
-    public function createCustomerRecord($request) {
-        return $this->post('/customer-records', $request, '\SecurionPay\Response\CustomerRecord');
+    public function createCredit($request) {
+        return $this->post('/credits', $request, '\SecurionPay\Response\Credit');
     }
     
     /**
-     * @param \SecurionPay\Request\CustomerRecordRefreshRequest $request
-     * @return \SecurionPay\Response\CustomerRecord
+     * @param string creditId
+     * @return \SecurionPay\Response\Credit
      */
-    public function refreshCustomerRecord($request) {
-        return $this->post('/customer-records/{customerRecordId}', $request, '\SecurionPay\Response\CustomerRecord');
+    public function retrieveCredit($creditId) {
+        return $this->get("/credits/{$creditId}", '\SecurionPay\Response\Credit');
     }
     
     /**
-     * @param string $customerRecordId
-     * @return \SecurionPay\Response\CustomerRecord
+     * @param \SecurionPay\Request\CreditUpdateRequest $request
+     * @return \SecurionPay\Response\Credit
      */
-    public function retrieveCustomerRecord($customerRecordId) {
-        return $this->get("/customer-records/{$customerRecordId}", '\SecurionPay\Response\CustomerRecord');
-    }
-
-    /**
-     * @param \SecurionPay\Request\CustomerRecordListRequest $request
-     * @return \SecurionPay\Response\ListResponse
-     */
-    public function listCustomerRecords($request) {
-        return $this->getList('/customer-records', $request, '\SecurionPay\Response\CustomerRecord');
+    public function updateCredit($request) {
+        return $this->post('/credits/{creditId}', $request, '\SecurionPay\Response\Credit');
     }
     
     /**
-     * @param string $customerRecordId
-     * @param string $customerRecordFeeId
-     * @return \SecurionPay\Response\CustomerRecordFee
-     */
-    public function retrieveCustomerRecordFee($customerRecordId, $customerRecordFeeId) {
-        return $this->get("/customer-records/{$customerRecordId}/fees/{$customerRecordFeeId}", '\SecurionPay\Response\CustomerRecordFee');
-    }
-
-    /**
-     * @param \SecurionPay\Request\CustomerRecordFeeListRequest $request
+     * @param \SecurionPay\Request\CreditListRequest $request
      * @return \SecurionPay\Response\ListResponse
      */
-    public function listCustomerRecordFees($request) {
-        return $this->getList('/customer-records/{customerRecordId}/fees', $request, '\SecurionPay\Response\CustomerRecordFee');
+    public function listCredits($request = null) {
+        return $this->getList('/credits', $request, '\SecurionPay\Response\Credit');
     }
-
+    
     /**
-     * @param string $customerRecordId
-     * @param string $customerRecordProfitId
-     * @return \SecurionPay\Response\CustomerRecordFee
+     * @param string $file
+     * @param string $purpose
+     * @return \SecurionPay\Response\FileUpload
      */
-    public function retrieveCustomerRecordProfit($customerRecordId, $customerRecordProfitId) {
-        return $this->get("/customer-records/{$customerRecordId}/profits/{$customerRecordProfitId}", '\SecurionPay\Response\CustomerRecordProfit');
+    public function createFileUpload($file, $purpose) {
+        $files = array('file' => $file);
+        $form = array('purpose' => $purpose);
+        
+        return $this->multipart('/files', $files, $form, '\SecurionPay\Response\FileUpload');
     }
-
+    
     /**
-     * @param \SecurionPay\Request\CustomerRecordProfitListRequest $request
+     * @param string $fileUploadId
+     * @return \SecurionPay\Response\FileUpload
+     */
+    public function retrieveFileUpload($fileUploadId) {
+        return $this->getFromEndpoint($this->uploadsEndpoint, "/files/{$fileUploadId}", '\SecurionPay\Response\FileUpload');
+    }
+    
+    /**
+     * @param \SecurionPay\Request\FileUploadListRequest $request
      * @return \SecurionPay\Response\ListResponse
      */
-    public function listCustomerRecordProfits($request) {
-        return $this->getList('/customer-records/{customerRecordId}/profits', $request, '\SecurionPay\Response\CustomerRecordProfit');
+    public function listFileUploads($request = null) {
+        return $this->listFromEndpoint($this->uploadsEndpoint, '/files', $request, '\SecurionPay\Response\FileUpload');
     }
 
+    /**
+     * @param string $disputeId
+     * @return \SecurionPay\Response\Dispute
+     */
+    public function retrieveDispute($disputeId) {
+        return $this->get("/disputes/{$disputeId}", '\SecurionPay\Response\Dispute');
+    }
+    
+    /**
+     * @param \SecurionPay\Request\DisputeUpdateRequest $request
+     * @return \SecurionPay\Response\Dispute
+     */
+    public function updateDispute($request) {
+        return $this->post('/disputes/{disputeId}', $request, '\SecurionPay\Response\Dispute');
+    }
+
+    /**
+     * @param string $disputeId
+     * @return \SecurionPay\Response\Dispute
+     */
+    public function closeDispute($disputeId) {
+        return $this->post("/disputes/{$disputeId}/close", null, '\SecurionPay\Response\Dispute');
+    }
+    
+    /**
+     * @param \SecurionPay\Request\DisputeListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listDisputes($request = null) {
+        return $this->getList('/disputes', $request, '\SecurionPay\Response\Dispute');
+    }
+
+    /**
+     * @param string $fraudWarningId
+     * @return \SecurionPay\Response\Dispute
+     */
+    public function retrieveFraudWarning($fraudWarningId) {
+        return $this->get("/fraud-warnings/{$fraudWarningId}", '\SecurionPay\Response\FraudWarning');
+    }
+    
+    /**
+     * @param \SecurionPay\Request\FraudWarningListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listFraudWarnings($request = null) {
+        return $this->getList('/fraud-warnings', $request, '\SecurionPay\Response\FraudWarning');
+    }
+    
     /**
      * @param \SecurionPay\Request\CheckoutRequest $request
      * @return string
@@ -430,7 +475,11 @@ class SecurionPayGateway
     }
 
     private function get($path, $responseClass) {
-        $response = $this->connection->get($this->endpoint . $path, $this->buildHeaders());
+        return $this->getFromEndpoint($this->endpoint, $path, $responseClass);
+    }
+    
+    private function getFromEndpoint($endpoint, $path, $responseClass) {
+        $response = $this->connection->get($endpoint . $path, $this->buildHeaders());
         $this->ensureSuccess($response);
         return $this->objectSerializer->deserialize($response['body'], $responseClass);
     }
@@ -442,13 +491,23 @@ class SecurionPayGateway
         return $this->objectSerializer->deserialize($response['body'], $responseClass);
     }
     
+    private function multipart($path, $files, $form, $responseClass) {
+        $response = $this->connection->multipart($this->uploadsEndpoint . $path, $files, $form, $this->buildHeaders());
+        $this->ensureSuccess($response);
+        return $this->objectSerializer->deserialize($response['body'], $responseClass);
+    }
+    
     private function getList($path, $request, $elementClass) {
-        $url = $this->buildQueryString($this->endpoint . $path, $request);
+        return $this->listFromEndpoint($this->endpoint, $path, $request, $elementClass);
+    }
+
+    private function listFromEndpoint($endpoint, $path, $request, $elementClass) {
+        $url = $this->buildQueryString($endpoint . $path, $request);
         $response = $this->connection->get($url, $this->buildHeaders());
         $this->ensureSuccess($response);
         return $this->objectSerializer->deserializeList($response['body'], $elementClass);
     }
-
+    
     private function delete($path, $request, $responseClass) {
         $url = $this->endpoint . $this->buildQueryString($path, $request);
         $response = $this->connection->delete($url, $this->buildHeaders());
@@ -494,6 +553,11 @@ class SecurionPayGateway
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+    }
+    
+    public function setUploadsEndpoint($uploadsEndpoint)
+    {
+        $this->uploadsEndpoint = $uploadsEndpoint;
     }
     
     public function setUserAgent($userAgent)

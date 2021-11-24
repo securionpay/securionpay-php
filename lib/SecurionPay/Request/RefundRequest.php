@@ -23,4 +23,14 @@ class RefundRequest extends AbstractRequest
     {
         return $this->set('amount', $amount);
     }
+    
+    public function getReason()
+    {
+        return $this->get('reason');
+    }
+    
+    public function reason($reason)
+    {
+        return $this->set('reason', $reason);
+    }
 }

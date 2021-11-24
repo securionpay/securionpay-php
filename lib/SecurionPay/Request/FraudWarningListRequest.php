@@ -1,7 +1,7 @@
 <?php
 namespace SecurionPay\Request;
 
-class CustomerListRequest extends AbstractRequest
+class FraudWarningListRequest extends AbstractRequest
 {
 
     public function getLimit()
@@ -56,24 +56,24 @@ class CustomerListRequest extends AbstractRequest
     {
         return $this->set('created', $created);
     }
-
-    public function getDeleted()
+    
+    public function getCharge()
     {
-        return $this->get('deleted');
-    }
-
-    public function deleted($deleted)
-    {
-        return $this->set('deleted', $deleted);
+        return $this->get('charge');
     }
     
-    public function getEmail()
+    public function charge($charge)
     {
-        return $this->get('email');
+        return $this->set('charge', $charge);
     }
-    
-    public function email($email)
+
+    public function getActionable()
     {
-        return $this->set('email', $email);
+        return $this->get('actionable');
+    }
+
+    public function actionable($actionable)
+    {
+        return $this->set('actionable', $actionable);
     }
 }

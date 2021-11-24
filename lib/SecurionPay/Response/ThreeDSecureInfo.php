@@ -28,4 +28,14 @@ class ThreeDSecureInfo extends AbstractResponse
     {
         return $this->get('liabilityShift');
     }
+    
+    public function getVersion()
+    {
+        return $this->get('version');
+    }
+    
+    public function getAuthenticationFlow()
+    {
+        return $this->get('authenticationFlow');
+    }
 }

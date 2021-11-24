@@ -93,6 +93,11 @@ class CrossSaleOffer extends AbstractResponse
         return $this->get('visibleForPartnerIds');
     }
 
+    public function getUrl()
+    {
+        return $this->get('url');
+    }
+    
     public function getMetadata()
     {
         return $this->get('metadata');

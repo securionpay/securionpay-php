@@ -69,6 +69,11 @@ class Card extends AbstractResponse
         return $this->get('type');
     }
 
+    public function getCountry()
+    {
+        return $this->get('country');
+    }
+    
     public function getAddressLine1()
     {
         return $this->get('addressLine1');
@@ -99,6 +104,9 @@ class Card extends AbstractResponse
         return $this->get('addressCountry');
     }
 
+    /**
+     * @return \SecurionPay\Response\FraudCheckData
+     */
     public function getFraudCheckData()
     {
         return $this->getObject('fraudCheckData', '\SecurionPay\Response\FraudCheckData');

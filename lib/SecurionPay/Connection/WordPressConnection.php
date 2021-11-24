@@ -47,4 +47,9 @@ class WordPressConnection extends Connection
             'body' => $response['body']
         );
     }
+    
+    public function multipart($url, $files, $form, $headers)
+    {
+        throw new \Exception('Multipart request in not supported by WordPressConnection');
+    }
 }

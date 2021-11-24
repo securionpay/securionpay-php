@@ -9,6 +9,11 @@ class Dispute extends AbstractResponse
         parent::__construct($response);
     }
 
+    public function getId()
+    {
+        return $this->get('id');
+    }
+    
     public function getCreated()
     {
         return $this->get('created');
@@ -42,6 +47,22 @@ class Dispute extends AbstractResponse
     public function getAcceptedAsLost()
     {
         return $this->get('acceptedAsLost');
+    }
+    
+    /**
+     * @return \SecurionPay\Response\DisputeEvidence
+     */
+    public function getEvidence()
+    {
+        return $this->getObject('evidence', '\SecurionPay\Response\DisputeEvidence');
+    }
+    
+    /**
+     * @return \SecurionPay\Response\DisputeEvidenceDetails
+     */
+    public function getEvidenceDetails()
+    {
+        return $this->getObject('evidenceDetails', '\SecurionPay\Response\DisputeEvidenceDetails');
     }
     
     /**

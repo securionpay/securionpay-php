@@ -73,14 +73,17 @@ class CheckoutRequest extends AbstractRequest
         return $this->set('rememberMe', $rememberMe);
     }
 
-    public function getThreeDSecureRequired()
+    /**
+     * @return \SecurionPay\Request\CheckoutRequestThreeDSecure
+     */
+    public function getThreeDSecure()
     {
-        return $this->get('threeDSecureRequired');
+        return $this->getObject('threeDSecure', '\SecurionPay\Request\CheckoutRequestThreeDSecure');
     }
-
-    public function threeDSecureRequired($threeDSecureRequired)
+    
+    public function threeDSecure($threeDSecure)
     {
-        return $this->set('threeDSecureRequired', $threeDSecureRequired);
+        return $this->set('threeDSecure', $threeDSecure);
     }
 
     public function getTermsAndConditionsUrl()

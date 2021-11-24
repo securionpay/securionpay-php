@@ -5,11 +5,11 @@ class CrossSaleOfferRequest extends AbstractRequest
 {
 
     /**
-     * @return \SecurionPay\Request\CheckoutRequestCharge
+     * @return \SecurionPay\Request\CrossSaleOfferRequestCharge
      */
     public function getCharge()
     {
-        return $this->getObject('charge', '\SecurionPay\Request\CheckoutRequestCharge');
+        return $this->getObject('charge', '\SecurionPay\Request\CrossSaleOfferRequestCharge');
     }
 
     public function charge($charge)
@@ -18,11 +18,11 @@ class CrossSaleOfferRequest extends AbstractRequest
     }
 
     /**
-     * @return \SecurionPay\Request\CheckoutRequestSubscription
+     * @return \SecurionPay\Request\CrossSaleOfferRequestSubscription
      */
     public function getSubscription()
     {
-        return $this->getObject('subscription', '\SecurionPay\Request\CheckoutRequestSubscription');
+        return $this->getObject('subscription', '\SecurionPay\Request\CrossSaleOfferRequestSubscription');
     }
 
     public function subscription($subscription)
@@ -119,7 +119,17 @@ class CrossSaleOfferRequest extends AbstractRequest
     {
         return $this->set('visibleForPartnerIds', $visibleForPartnerIds);
     }
-
+    
+    public function getUrl()
+    {
+        return $this->get('url');
+    }
+    
+    public function url($url)
+    {
+        return $this->set('url', $url);
+    }
+    
     public function getMetadata()
     {
         return $this->get('metadata');

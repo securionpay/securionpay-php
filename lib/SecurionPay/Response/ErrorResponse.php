@@ -18,12 +18,22 @@ class ErrorResponse extends AbstractResponse
     {
         return $this->getObject('error')->get('code');
     }
-
+    
+    public function getIssuerDeclineCode()
+    {
+        return $this->getObject('error')->get('issuerDeclineCode');
+    }
+    
     public function getChargeId()
     {
         return $this->getObject('error')->get('chargeId');
     }
 
+    public function getCreditId()
+    {
+        return $this->getObject('error')->get('creditId');
+    }
+    
     public function getBlacklistRuleId()
     {
         return $this->getObject('error')->get('blacklistRuleId');

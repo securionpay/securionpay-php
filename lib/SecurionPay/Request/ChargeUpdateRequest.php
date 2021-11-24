@@ -48,18 +48,31 @@ class ChargeUpdateRequest extends AbstractRequest
     }
 
     /**
+     * @return \SecurionPay\Request\FraudDetailsRequest
+     */
+    public function getFraudDetails()
+    {
+        return $this->getObject('fraudDetails', '\SecurionPay\Request\FraudDetailsRequest');
+    }
+
+    public function fraudDetails($fraudDetails)
+    {
+        return $this->set('fraudDetails', $fraudDetails);
+    }
+
+    /**
      * @return \SecurionPay\Request\BillingRequest
      */
     public function getBilling()
     {
         return $this->getObject('billing', '\SecurionPay\Request\BillingRequest');
     }
-
+    
     public function billing($billing)
     {
         return $this->set('billing', $billing);
     }
-
+    
     public function getMetadata()
     {
         return $this->get('metadata');

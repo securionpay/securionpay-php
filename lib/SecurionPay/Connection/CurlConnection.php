@@ -32,6 +32,22 @@ class CurlConnection extends Connection
         return $this->httpRequest('DELETE', $url, $headers);
     }
 
+    public function multipart($url, $files, $form, $headers)
+    {
+        $request = array();
+        
+        foreach ($files as $key => $file) {
+            $request[$key] = curl_file_create($file, null, basename($file));
+        }
+        foreach ($form as $key => $value) {
+            $request[$key] = $value;
+        }
+        
+        unset($headers['Content-Type']);
+        
+        return $this->httpRequest('POST', $url, $headers, $request);
+    }
+    
     private function httpRequest($httpMethod, $url, $headers = array(), $requestBody = null)
     {
         $version = curl_version();

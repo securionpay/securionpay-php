@@ -64,6 +64,10 @@ class Token extends AbstractResponse
         return $this->get('used');
     }
 
+    /**
+     * 
+     * @return \SecurionPay\Response\Card
+     */
     public function getCard()
     {
         return $this->getObject('card', '\SecurionPay\Response\Card');

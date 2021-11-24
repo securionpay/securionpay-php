@@ -15,11 +15,11 @@ class CrossSaleOfferUpdateRequest extends AbstractRequest
     }
 
     /**
-     * @return \SecurionPay\Request\CheckoutRequestCharge
+     * @return \SecurionPay\Request\CrossSaleOfferRequestCharge
      */
     public function getCharge()
     {
-        return $this->getObject('charge', '\SecurionPay\Request\CheckoutRequestCharge');
+        return $this->getObject('charge', '\SecurionPay\Request\CrossSaleOfferRequestCharge');
     }
 
     public function charge($charge)
@@ -28,11 +28,11 @@ class CrossSaleOfferUpdateRequest extends AbstractRequest
     }
 
     /**
-     * @return \SecurionPay\Request\CheckoutRequestSubscription
+     * @return \SecurionPay\Request\CrossSaleOfferRequestSubscription
      */
     public function getSubscription()
     {
-        return $this->getObject('subscription', '\SecurionPay\Request\CheckoutRequestSubscription');
+        return $this->getObject('subscription', '\SecurionPay\Request\CrossSaleOfferRequestSubscription');
     }
 
     public function subscription($subscription)
@@ -110,6 +110,16 @@ class CrossSaleOfferUpdateRequest extends AbstractRequest
         return $this->set('termsAndConditionsUrl', $termsAndConditionsUrl);
     }
 
+    public function getUrl()
+    {
+        return $this->get('url');
+    }
+    
+    public function url($url)
+    {
+        return $this->set('url', $url);
+    }
+    
     public function getVisibleForAllPartners()
     {
         return $this->get('visibleForAllPartners');

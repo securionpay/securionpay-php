@@ -1,6 +1,8 @@
 <?php
 namespace SecurionPay\Response;
 
+use SecurionPay\Exception\MappingException;
+
 class AbstractResponse
 {
 

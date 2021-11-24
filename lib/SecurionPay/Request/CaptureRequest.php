@@ -1,13 +1,16 @@
 <?php
 namespace SecurionPay\Request;
 
-class CaptureRequest extends AbstractRequest {
+class CaptureRequest extends AbstractRequest
+{
     
-	public function getChargeId() {
+	public function getChargeId()
+	{
 	    return $this->get('chargeId');
 	}
 	
-	public function chargeId($chargeId) {
+	public function chargeId($chargeId)
+	{
 	    return $this->set('chargeId', $chargeId);
 	}
 }

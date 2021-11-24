@@ -1,7 +1,7 @@
 <?php
 namespace SecurionPay\Response;
 
-class CustomerRecordProfit extends AbstractResponse
+class FraudWarning extends AbstractResponse
 {
 
     public function __construct($response)
@@ -19,18 +19,13 @@ class CustomerRecordProfit extends AbstractResponse
         return $this->get('created');
     }
 
-    public function getAmount()
+    public function getCharge()
     {
-        return $this->get('amount');
+        return $this->get('charge');
     }
 
-    public function getCurrency()
+    public function getActionable()
     {
-        return $this->get('currency');
-    }
-
-    public function getCustomerRecordId()
-    {
-        return $this->get('customerRecordId');
+        return $this->get('actionable');
     }
 }

@@ -35,6 +35,8 @@ class Event extends AbstractResponse
                 return new Card($data);
             case 'charge':
                 return new Charge($data);
+            case 'credit':
+                return new Credit($data);
             case 'dispute':
                 return new Dispute($data);
             case 'plan':
@@ -43,17 +45,11 @@ class Event extends AbstractResponse
                 return new Subscription($data);
             case 'crossSaleOffer':
                 return new CrossSaleOffer($data);
-            case 'customerRecord':
-                return new CustomerRecord($data);
-            case 'customerRecordProfit':
-                return new CustomerRecordProfit($data);
-            case 'customerRecordFee':
-                return new CustomerRecordFee($data);
             default:
                 return $data;
         }
     }
-
+    
     public function getLog()
     {
         return $this->get('log');

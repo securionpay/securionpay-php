@@ -117,6 +117,14 @@ class Subscription extends AbstractResponse
     {
         return $this->getObject('threeDSecureInfo', '\SecurionPay\Response\ThreeDSecureInfo');
     }
+    
+    /**
+     * @return \SecurionPay\Response\ChargeFromCrossSale
+     */
+    public function getFromCrossSale()
+    {
+        return $this->getObject('fromCrossSale', '\SecurionPay\Response\ChargeFromCrossSale');
+    }
 
     public function getMetadata()
     {

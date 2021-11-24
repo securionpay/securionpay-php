@@ -14,6 +14,10 @@ class ObjectSerializer
 
     public function serialize($request, & $path)
     {
+        if ($request == null) {
+            return null;
+        }
+        
         $request = $this->normalizeRequest($request);
         $request = $this->handlePathVariables($request, $path);
         $request = $this->transformForJson($request);

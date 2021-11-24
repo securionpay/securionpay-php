@@ -33,4 +33,9 @@ class ChargeWithCrossSale extends AbstractResponse
     {
         return $this->get('currency');
     }
+    
+    public function getSubscriptionId()
+    {
+        return $this->get('subscriptionId');
+    }
 }

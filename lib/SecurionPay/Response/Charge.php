@@ -24,6 +24,11 @@ class Charge extends AbstractResponse
         return $this->get('amount');
     }
 
+    public function getAmountRefunded()
+    {
+        return $this->get('amountRefunded');
+    }
+    
     public function getCurrency()
     {
         return $this->get('currency');
@@ -47,6 +52,11 @@ class Charge extends AbstractResponse
         return $this->get('customerId');
     }
 
+    public function getSubscriptionId()
+    {
+        return $this->get('subscriptionId');
+    }
+    
     public function getCaptured()
     {
         return $this->get('captured');
@@ -136,6 +146,11 @@ class Charge extends AbstractResponse
         return $this->get('failureCode');
     }
 
+    public function getFailureIssuerDeclineCode()
+    {
+        return $this->get('failureIssuerDeclineCode');
+    }
+    
     public function getFailureMessage()
     {
         return $this->get('failureMessage');
