@@ -12,6 +12,8 @@ class SecurionPayException extends \Exception
 
     private $blacklistRuleId;
 
+    private $issuerDeclineCode;
+
     public function __construct($error = null)
     {
         if ($error instanceof ErrorResponse) {
@@ -21,6 +23,7 @@ class SecurionPayException extends \Exception
             $this->code = $error->getCode();
             $this->chargeId = $error->getChargeId();
             $this->blacklistRuleId = $error->getBlacklistRuleId();
+            $this->issuerDeclineCode = $error->getIssuerDeclineCode();
         } else {
             parent::__construct($error);
         }
@@ -39,5 +42,10 @@ class SecurionPayException extends \Exception
     public function getBlacklistRuleId()
     {
         return $this->blacklistRuleId;
+    }
+
+    public function getIssuerDeclineCode()
+    {
+        return $this->issuerDeclineCode;
     }
 }
