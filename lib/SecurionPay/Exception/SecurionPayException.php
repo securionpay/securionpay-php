@@ -5,15 +5,13 @@ use SecurionPay\Response\ErrorResponse;
 
 class SecurionPayException extends \Exception
 {
-
     private $type;
 
-    private $chargeId;
-
-    private $blacklistRuleId;
-
     private $issuerDeclineCode;
-
+    private $chargeId;
+    private $creditId;
+    private $blacklistRuleId;
+    
     public function __construct($error = null)
     {
         if ($error instanceof ErrorResponse) {
@@ -21,9 +19,10 @@ class SecurionPayException extends \Exception
             
             $this->type = $error->getType();
             $this->code = $error->getCode();
-            $this->chargeId = $error->getChargeId();
-            $this->blacklistRuleId = $error->getBlacklistRuleId();
             $this->issuerDeclineCode = $error->getIssuerDeclineCode();
+            $this->chargeId = $error->getChargeId();
+            $this->creditId = $error->getCreditId();
+            $this->blacklistRuleId = $error->getBlacklistRuleId();
         } else {
             parent::__construct($error);
         }
@@ -33,19 +32,24 @@ class SecurionPayException extends \Exception
     {
         return $this->type;
     }
+    
+    public function getIssuerDeclineCode()
+    {
+        return $this->issuerDeclineCode;
+    }
 
     public function getChargeId()
     {
         return $this->chargeId;
     }
 
+    public function getCreditId()
+    {
+        return $this->creditId;
+    }
+    
     public function getBlacklistRuleId()
     {
         return $this->blacklistRuleId;
-    }
-
-    public function getIssuerDeclineCode()
-    {
-        return $this->issuerDeclineCode;
     }
 }
