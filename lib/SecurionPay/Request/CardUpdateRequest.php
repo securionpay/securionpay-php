@@ -113,4 +113,14 @@ class CardUpdateRequest extends AbstractRequest
     {
         return $this->set('addressLine2', $addressLine2);
     }
+
+    public function checkFastCredit($checkFastCredit)
+    {
+        return $this->set('checkFastCredit', $checkFastCredit);
+    }
+
+    public function getCheckFastCredit($checkFastCredit)
+    {
+        return $this->get('checkFastCredit');
+    }
 }

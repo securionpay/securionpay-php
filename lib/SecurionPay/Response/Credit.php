@@ -74,4 +74,9 @@ class Credit extends AbstractResponse
     {
         return $this->get('failureMessage');
     }
+
+    public function getFast()
+    {
+        return $this->get('fast');
+    }
 }

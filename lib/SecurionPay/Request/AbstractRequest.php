@@ -27,7 +27,7 @@ abstract class AbstractRequest {
 		return $array;
 	}
 
-	protected function get($field, $default = null) {
+	public function get($field, $default = null) {
 		if (!isset($this->data[$field])) {
 			return $default;
 		}
