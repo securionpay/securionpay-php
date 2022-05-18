@@ -146,4 +146,14 @@ class CardRequest extends AbstractRequest
     {
         return $this->set('fraudCheckData', $fraudCheckData);
     }
+
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
+
+    public function merchantAccountId($merchantAccountId)
+    {
+        return $this->set('merchantAccountId', $merchantAccountId);
+    }
 }

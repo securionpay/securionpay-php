@@ -130,4 +130,9 @@ class Subscription extends AbstractResponse
     {
         return $this->get('metadata');
     }
+
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
 }
