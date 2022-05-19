@@ -123,14 +123,4 @@ class CardUpdateRequest extends AbstractRequest
     {
         return $this->get('checkFastCredit');
     }
-
-    public function getMerchantAccountId()
-    {
-        return $this->get('merchantAccountId');
-    }
-
-    public function merchantAccountId($merchantAccountId)
-    {
-        return $this->set('merchantAccountId', $merchantAccountId);
-    }
 }

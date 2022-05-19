@@ -63,14 +63,4 @@ class PlanUpdateRequest extends AbstractRequest
     {
         return $this->set('metadata', $metadata);
     }
-
-    public function getMerchantAccountId()
-    {
-        return $this->get('merchantAccountId');
-    }
-
-    public function merchantAccountId($merchantAccountId)
-    {
-        return $this->set('merchantAccountId', $merchantAccountId);
-    }
 }

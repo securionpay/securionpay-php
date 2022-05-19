@@ -119,9 +119,4 @@ class Card extends AbstractResponse
     {
         return $this->getObject('fastCredit', '\SecurionPay\Response\FastCredit');
     }
-
-    public function getMerchantAccountId()
-    {
-        return $this->get('merchantAccountId');
-    }
 }

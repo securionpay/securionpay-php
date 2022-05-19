@@ -103,14 +103,4 @@ class PlanRequest extends AbstractRequest
     {
         return $this->set('recursTo', $recursTo);
     }
-
-    public function getMerchantAccountId()
-    {
-        return $this->get('merchantAccountId');
-    }
-
-    public function merchantAccountId($merchantAccountId)
-    {
-        return $this->set('merchantAccountId', $merchantAccountId);
-    }
 }
