@@ -72,10 +72,10 @@ class SecurionPayGateway
     
     /**
      * @param \SecurionPay\Request\RefundRequest $request
-     * @return \SecurionPay\Response\Charge
+     * @return \SecurionPay\Response\Refund
      */
     public function refundCharge($request) {
-        return $this->post('/charges/{chargeId}/refund', $request, '\SecurionPay\Response\Charge');
+        return $this->post('/refunds', $request, '\SecurionPay\Response\Refund');
     }
     
     /**
