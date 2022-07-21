@@ -155,4 +155,9 @@ class Charge extends AbstractResponse
     {
         return $this->get('failureMessage');
     }
+
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
 }
