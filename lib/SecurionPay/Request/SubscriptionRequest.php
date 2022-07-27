@@ -92,7 +92,17 @@ class SubscriptionRequest extends AbstractRequest
     {
         return $this->set('billing', $billing);
     }
-
+    
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
+    
+    public function merchantAccountId($merchantAccountId)
+    {
+        return $this->set('merchantAccountId', $merchantAccountId);
+    }
+    
     public function getMetadata()
     {
         return $this->get('metadata');
@@ -101,15 +111,5 @@ class SubscriptionRequest extends AbstractRequest
     public function metadata($metadata)
     {
         return $this->set('metadata', $metadata);
-    }
-
-    public function getMerchantAccountId()
-    {
-        return $this->get('merchantAccountId');
-    }
-
-    public function merchantAccountId($merchantAccountId)
-    {
-        return $this->set('merchantAccountId', $merchantAccountId);
     }
 }

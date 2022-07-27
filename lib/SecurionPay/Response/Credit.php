@@ -55,6 +55,11 @@ class Credit extends AbstractResponse
         return $this->getObject('threeDSecureInfo', '\SecurionPay\Response\ThreeDSecureInfo');
     }
     
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
+    
     public function getMetadata()
     {
         return $this->get('metadata');

@@ -3,6 +3,7 @@
 .classpath
 .project
 .settings
+.buildpath
 
 /vendor
 composer.lock

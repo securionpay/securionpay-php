@@ -6,12 +6,9 @@ use SecurionPay\Connection\CurlConnection;
 use SecurionPay\Exception\SecurionPayException;
 use SecurionPay\Util\ObjectSerializer;
 
-/**
- * @version 2.1.1-rc3
- */
 class SecurionPayGateway
 {
-    const VERSION = '2.2.0';
+    const VERSION = '2.5.0';
     const DEFAULT_ENDPOINT = 'https://api.securionpay.com';
     const DEFAULT_UPLOADS_ENDPOINT = "https://uploads.securionpay.com/";
     
@@ -73,9 +70,11 @@ class SecurionPayGateway
     /**
      * @param \SecurionPay\Request\RefundRequest $request
      * @return \SecurionPay\Response\Refund
+     * 
+     * @deprecated For backward compatibility only. Use "createRefund($request)".
      */
     public function refundCharge($request) {
-        return $this->post('/refunds', $request, '\SecurionPay\Response\Refund');
+        return $this->createRefund($request);
     }
     
     /**
@@ -459,6 +458,61 @@ class SecurionPayGateway
      */
     public function listFraudWarnings($request = null) {
         return $this->getList('/fraud-warnings', $request, '\SecurionPay\Response\FraudWarning');
+    }
+    
+    /**
+     * @param string $refundId
+     * @return \SecurionPay\Response\Refund
+     */
+    public function retrieveRefund($refundId) {
+        return $this->get("/refunds/{$refundId}", '\SecurionPay\Response\Refund');
+    }
+
+    /**
+     * @param \SecurionPay\Request\RefundRequest $request
+     * @return \SecurionPay\Response\Refund
+     */
+    public function createRefund($request) {
+        return $this->post('/refunds', $request, '\SecurionPay\Response\Refund');
+    }
+
+    /**
+     * @param \SecurionPay\Request\RefundListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listRefunds($request) {
+        return $this->getList('/refunds', $request, '\SecurionPay\Response\Refund');
+    }
+
+    /**
+     * @param string $payoutId
+     * @return \SecurionPay\Response\Payout
+     */
+    public function retrievePayout($payoutId) {
+        return $this->get("/payouts/{$payoutId}", '\SecurionPay\Response\Payout');
+    }
+
+    /**
+     * @return \SecurionPay\Response\Payout
+     */
+    public function createPayout() {
+        return $this->post('/payouts', null, '\SecurionPay\Response\Payout');
+    }
+
+    /**
+     * @param \SecurionPay\Request\PayoutListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listPayouts($request = null) {
+        return $this->getList('/payouts', $request, '\SecurionPay\Response\Payout');
+    }
+    
+    /**
+     * @param \SecurionPay\Request\PayoutTransactionListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listPayoutTransactions($request) {
+        return $this->getList('/payout-transactions', $request, '\SecurionPay\Response\PayoutTransaction');
     }
     
     /**

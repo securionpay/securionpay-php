@@ -125,14 +125,14 @@ class Subscription extends AbstractResponse
     {
         return $this->getObject('fromCrossSale', '\SecurionPay\Response\ChargeFromCrossSale');
     }
-
-    public function getMetadata()
-    {
-        return $this->get('metadata');
-    }
-
+    
     public function getMerchantAccountId()
     {
         return $this->get('merchantAccountId');
+    }
+    
+    public function getMetadata()
+    {
+        return $this->get('metadata');
     }
 }

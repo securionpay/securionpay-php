@@ -136,6 +136,11 @@ class Charge extends AbstractResponse
         return $this->getObject('dispute', '\SecurionPay\Response\Dispute');
     }
 
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
+    
     public function getMetadata()
     {
         return $this->get('metadata');
@@ -154,10 +159,5 @@ class Charge extends AbstractResponse
     public function getFailureMessage()
     {
         return $this->get('failureMessage');
-    }
-
-    public function getMerchantAccountId()
-    {
-        return $this->get('merchantAccountId');
     }
 }

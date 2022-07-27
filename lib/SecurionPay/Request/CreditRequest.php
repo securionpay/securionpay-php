@@ -63,6 +63,16 @@ class CreditRequest extends AbstractRequest
         return $this->set('description', $description);
     }
     
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
+    
+    public function merchantAccountId($merchantAccountId)
+    {
+        return $this->set('merchantAccountId', $merchantAccountId);
+    }
+    
     public function getMetadata()
     {
         return $this->get('metadata');

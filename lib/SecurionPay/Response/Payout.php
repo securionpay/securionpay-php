@@ -1,7 +1,7 @@
 <?php
 namespace SecurionPay\Response;
 
-class Refund extends AbstractResponse
+class Payout extends AbstractResponse
 {
 
     public function __construct($response)
@@ -13,34 +13,29 @@ class Refund extends AbstractResponse
     {
         return $this->get('id');
     }
-    
+
     public function getCreated()
     {
         return $this->get('created');
     }
-    
+
     public function getAmount()
     {
         return $this->get('amount');
     }
-
+    
     public function getCurrency()
     {
         return $this->get('currency');
     }
 
-    public function getCharge()
+    public function getPeriodStart()
     {
-        return $this->get('charge');
+        return $this->get('periodStart');
     }
     
-    public function getReason()
+    public function getPeriodEnd()
     {
-        return $this->get('reason');
-    }
-    
-    public function getStatus()
-    {
-        return $this->get('status');
+        return $this->get('periodEnd');
     }
 }

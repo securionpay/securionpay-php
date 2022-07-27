@@ -112,6 +112,11 @@ class Card extends AbstractResponse
         return $this->getObject('fraudCheckData', '\SecurionPay\Response\FraudCheckData');
     }
 
+    public function getMerchantAccountId()
+    {
+        return $this->get('merchantAccountId');
+    }
+    
     /**
      * @return \SecurionPay\Response\FastCredit
      */
