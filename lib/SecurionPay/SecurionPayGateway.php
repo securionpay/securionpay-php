@@ -168,6 +168,30 @@ class SecurionPayGateway
     }
 
     /**
+     * @param string $paymentMethodId
+     * @return \SecurionPay\Response\PaymentMethod
+     */
+    public function retrievePaymentMethod($paymentMethodId) {
+        return $this->get("/payment-methods/{$paymentMethodId}", '\SecurionPay\Response\PaymentMethod');
+    }
+
+    /**
+     * @param string $paymentMethodId
+     * @return \SecurionPay\Response\DeleteResponse
+     */
+    public function deletePaymentMethod($paymentMethodId) {
+        return $this->delete("/payment-methods/{$paymentMethodId}", null, '\SecurionPay\Response\DeleteResponse');
+    }
+
+    /**
+     * @param \SecurionPay\Request\PaymentMethodListRequest $request
+     * @return \SecurionPay\Response\ListResponse
+     */
+    public function listPaymentMethods($request) {
+        return $this->getList('/payment-methods', $request, '\SecurionPay\Response\PaymentMethod');
+    }
+
+    /**
      * @param \SecurionPay\Request\SubscriptionRequest $request
      * @return \SecurionPay\Response\Subscription
      */

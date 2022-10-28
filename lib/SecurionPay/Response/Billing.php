@@ -26,4 +26,9 @@ class Billing extends AbstractResponse
     {
         return $this->get('vat');
     }
+
+    public function getEmail()
+    {
+        return $this->get('email');
+    }
 }

@@ -14,6 +14,11 @@ class Charge extends AbstractResponse
         return $this->get('id');
     }
 
+    public function getClientObjectId()
+    {
+        return $this->get('clientObjectId');
+    }
+
     public function getCreated()
     {
         return $this->get('created');
@@ -39,12 +44,33 @@ class Charge extends AbstractResponse
         return $this->get('description');
     }
 
+    public function getStatus()
+    {
+        return $this->get('status');
+    }
+
     /**
      * @return \SecurionPay\Response\Card
      */
     public function getCard()
     {
         return $this->getObject('card', '\SecurionPay\Response\Card');
+    }
+
+    /**
+     * @return \SecurionPay\Response\PaymentMethod
+     */
+    public function getPaymentMethod()
+    {
+        return $this->getObject('paymentMethod', '\SecurionPay\Response\PaymentMethod');
+    }
+
+    /**
+     * @return \SecurionPay\Response\ChargeFlow
+     */
+    public function getFlow()
+    {
+        return $this->getObject('flow', '\SecurionPay\Response\ChargeFlow');
     }
 
     public function getCustomerId()

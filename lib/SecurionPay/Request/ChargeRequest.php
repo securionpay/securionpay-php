@@ -63,6 +63,38 @@ class ChargeRequest extends AbstractRequest
         return $this->set('card', $card);
     }
 
+    /**
+     * @return \SecurionPay\Request\PaymentMethodRequest
+     */
+    public function getPaymentMethod()
+    {
+        $paymentMethod = $this->get('paymentMethod');
+
+        if (is_array($paymentMethod)) {
+            return $this->getObject('paymentMethod', '\SecurionPay\Request\PaymentMethodRequest');
+        } else {
+            return $paymentMethod;
+        }
+    }
+
+    public function paymentMethod($paymentMethod)
+    {
+        return $this->set('paymentMethod', $paymentMethod);
+    }
+
+    /**
+     * @return \SecurionPay\Request\ChargeFlowRequest
+     */
+    public function getFlow()
+    {
+        return $this->getObject('flow', '\SecurionPay\Request\ChargeFlowRequest');
+    }
+
+    public function flow($flow)
+    {
+        return $this->set('flow', $flow);
+    }
+
     public function getCaptured()
     {
         return $this->get('captured');
