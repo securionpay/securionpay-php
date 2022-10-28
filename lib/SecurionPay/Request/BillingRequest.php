@@ -36,4 +36,14 @@ class BillingRequest extends AbstractRequest
     {
         return $this->set('vat', $vat);
     }
+
+    public function getEmail()
+    {
+        return $this->get('email');
+    }
+
+    public function email($email)
+    {
+        return $this->set('email', $email);
+    }
 }

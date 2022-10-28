@@ -32,6 +32,14 @@ class CustomerRequest extends AbstractRequest
         return $this->getObject('card', '\SecurionPay\Request\CardRequest');
     }
 
+    /**
+     * @return \SecurionPay\Request\PaymentMethodRequest
+     */
+    public function getPaymentMethod()
+    {
+        return $this->getObject('paymentMethod', '\SecurionPay\Request\PaymentMethodRequest');
+    }
+
     public function card($card)
     {
         return $this->set('card', $card);

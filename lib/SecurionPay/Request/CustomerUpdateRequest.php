@@ -44,6 +44,16 @@ class CustomerUpdateRequest extends AbstractRequest
         return $this->set('defaultCardId', $defaultCardId);
     }
 
+    public function getDefaultPaymentMethodId()
+    {
+        return $this->get('defaultPaymentMethodId');
+    }
+
+    public function defaultPaymentMethodId($defaultPaymentMethodId)
+    {
+        return $this->set('defaultPaymentMethodId', $defaultPaymentMethodId);
+    }
+
     /**
      * @return \SecurionPay\Request\CardRequest
      */
