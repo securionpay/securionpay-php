@@ -1,3 +1,8 @@
+Deprecation
+===================================
+
+This library is deprecated. Please use [Shift4 PHP Library](https://github.com/shift4developer/shift4-php).
+
 # SecurionPay PHP Library
 
 If you don't already have SecurionPay account you can create it [here](https://securionpay.com/signup). 
